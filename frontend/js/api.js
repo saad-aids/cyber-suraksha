@@ -3,7 +3,10 @@
  * Handles all FastAPI backend interactions
  */
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:8000'
+    : ''; // Provide your production backend URL here, e.g., 'https://your-backend-service.onrender.com'
+
 
 // API Key Management
 const ApiKeyManager = {
