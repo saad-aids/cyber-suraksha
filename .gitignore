@@ -1,0 +1,21 @@
+# Environment variables
+.env
+backend/.env
+
+# Dependencies
+node_modules/
+package-lock.json
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS specific
+.DS_Store
+thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+.gemini/
+.agent/

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber-Suraksha | AI Fraud Recovery</title>
+    <meta name="description"
+        content="AI-powered First Responder for Financial Fraud Recovery - Report cyber fraud within the Golden Hour">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">Cyber-Suraksha</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#report" class="nav-link">Report Fraud</a>
+                <a href="#directory" class="nav-link">Nodal Officers</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+            </div>
+            <a href="tel:1930" class="emergency-btn">
+                <span class="pulse"></span>
+                📞 1930
+            </a>
+            <button class="settings-btn" id="settingsBtn" title="API Settings">
+                ⚙️
+            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- API Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔑 API Settings</h3>
+                <button class="modal-close" id="closeSettingsModal">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    Enter your Google Gemini API key for AI-powered analysis.
+                    <a href="https://aistudio.google.com/apikey" target="_blank">Get API Key →</a>
+                </p>
+                <div class="form-group">
+                    <label for="apiKeyInput">Gemini API Key</label>
+                    <div class="api-key-input-wrapper">
+                        <input type="password" id="apiKeyInput" class="form-input" placeholder="Enter your API key...">
+                        <button class="toggle-visibility-btn" id="toggleApiKeyVisibility">👁️</button>
+                    </div>
+                    <span class="form-hint">Your API key is stored locally in your browser and sent securely to the
+                        backend.</span>
+                </div>
+                <div class="api-status" id="apiStatus">
+                    <span class="status-indicator" id="statusIndicator">●</span>
+                    <span id="statusText">Not configured</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="clearApiKey">Clear</button>
+                <button class="btn btn-primary" id="saveApiKey">Save & Test</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">⚡</span>
+                AI-Powered First Responder
+            </div>
+            <h1 class="hero-title">
+                Stop Fraud in the
+                <span class="gradient-text">Golden Hour</span>
+            </h1>
+            <p class="hero-subtitle">
+                The first 60 minutes after a scam are critical. Our AI agent classifies fraud,
+                collects evidence, and connects you directly to bank nodal officers.
+            </p>
+
+            <!-- Golden Hour Timer -->
+            <div class="golden-timer" id="goldenTimer">
+                <div class="timer-label">⏱️ Golden Hour Countdown</div>
+                <div class="timer-display">
+                    <div class="timer-unit">
+                        <span class="timer-value" id="timerMinutes">60</span>
+                        <span class="timer-text">MIN</span>
+                    </div>
+                    <span class="timer-separator">:</span>
+                    <div class="timer-unit">
+                        <span class="timer-value" id="timerSeconds">00</span>
+                        <span class="timer-text">SEC</span>
+                    </div>
+                </div>
+                <div class="timer-message">Act now to maximize recovery chances</div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#report" class="btn btn-primary btn-lg">
+                    <span>🚨</span> Report Fraud Now
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary btn-lg">
+                    Learn How It Works
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">₹202Cr+</div>
+                    <div class="stat-label">Saved in Mumbai (2024)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1930</div>
+                    <div class="stat-label">National Helpline</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">60 Min</div>
+                    <div class="stat-label">Golden Hour Window</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4 Nodes</div>
+                    <div class="stat-label">AI Agent Workflow</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Fraud Section -->
+    <section class="report-section" id="report">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Report Cyber Fraud</h2>
+                <p class="section-subtitle">Our AI agent will analyze, collect evidence, and generate reports</p>
+            </div>
+
+            <!-- API Key Warning -->
+            <div class="api-warning" id="apiWarning" style="display: none;">
+                <span class="warning-icon">⚠️</span>
+                <span>API key not configured. AI features will use fallback mode.</span>
+                <button class="btn btn-sm" onclick="document.getElementById('settingsBtn').click()">Configure API
+                    Key</button>
+            </div>
+
+            <!-- Wizard Progress -->
+            <div class="wizard-progress" id="wizardProgress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Describe</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Evidence</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Analysis</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Report</div>
+                </div>
+            </div>
+
+            <!-- Wizard Container -->
+            <div class="wizard-container" id="wizardContainer">
+
+                <!-- Step 1: Describe the Fraud -->
+                <div class="wizard-step active" id="step1">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-icon">📝</span>
+                            <h3>Describe What Happened</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="complaint">Tell us about the fraud incident *</label>
+                            <textarea id="complaint" class="form-input" rows="5"
+                                placeholder="Describe what happened in detail. Include: How were you contacted? What did they say? What actions did you take? Example: 'I received a call from someone claiming to be from CBI saying a parcel with drugs was sent in my name...'"
+                                required></textarea>
+                            <span class="char-count"><span id="charCount">0</span>/200 characters minimum</span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="incidentDate">Date of Incident</label>
+                                <input type="date" id="incidentDate" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount Lost (₹)</label>
+                                <input type="number" id="amount" class="form-input" placeholder="e.g., 50000" min="0">
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <button class="btn btn-primary" onclick="nextStep(1)">
+                                Continue <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Evidence Collection -->
+                <div class="wizard-step" id="step2">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-icon">🔍</span>
+                            <h3>Evidence Details</h3>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="utr">Transaction Reference (UTR) *</label>
+                                <input type="text" id="utr" class="form-input"
+                                    placeholder="e.g., SBIN0012345678 or 123456789012">
+                                <span class="form-hint">12-16 character alphanumeric code</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="bankName">Bank Name</label>
+                                <select id="bankName" class="form-input">
+                                    <option value="">Select Bank</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="suspectPhone">Suspect's Phone Number</label>
+                                <input type="tel" id="suspectPhone" class="form-input" placeholder="e.g., 9876543210">
+                            </div>
+                            <div class="form-group">
+                                <label for="suspectUrl">Fraudulent URL/App</label>
+                                <input type="text" id="suspectUrl" class="form-input" placeholder="e.g., fake-app.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="victimName">Your Name</label>
+                                <input type="text" id="victimName" class="form-input" placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="victimPhone">Your Contact Number</label>
+                                <input type="tel" id="victimPhone" class="form-input" placeholder="Your phone number">
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <button class="btn btn-secondary" onclick="prevStep(2)">
+                                <span>←</span> Back
+                            </button>
+                            <button class="btn btn-primary" onclick="runAnalysis()">
+                                Analyze with AI <span>🤖</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: AI Analysis -->
+                <div class="wizard-step" id="step3">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-icon">🤖</span>
+                            <h3>AI Analysis in Progress</h3>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div class="analysis-loading" id="analysisLoading">
+                            <div class="loading-spinner"></div>
+                            <div class="loading-text">Processing through AI agents...</div>
+
+                            <div class="agent-nodes">
+                                <div class="agent-node" id="nodeTriageStatus">
+                                    <div class="node-icon">🎯</div>
+                                    <div class="node-info">
+                                        <div class="node-name">Triage Auditor</div>
+                                        <div class="node-status">Classifying scam type...</div>
+                                    </div>
+                                    <div class="node-spinner"></div>
+                                </div>
+                                <div class="agent-node pending" id="nodeEvidenceStatus">
+                                    <div class="node-icon">🔍</div>
+                                    <div class="node-info">
+                                        <div class="node-name">Evidence Collector</div>
+                                        <div class="node-status">Waiting...</div>
+                                    </div>
+                                </div>
+                                <div class="agent-node pending" id="nodeRouterStatus">
+                                    <div class="node-icon">🏦</div>
+                                    <div class="node-info">
+                                        <div class="node-name">Nodal Router</div>
+                                        <div class="node-status">Waiting...</div>
+                                    </div>
+                                </div>
+                                <div class="agent-node pending" id="nodeReporterStatus">
+                                    <div class="node-icon">📋</div>
+                                    <div class="node-info">
+                                        <div class="node-name">Portal Reporter</div>
+                                        <div class="node-status">Waiting...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results State -->
+                        <div class="analysis-results" id="analysisResults" style="display: none;">
+                            <!-- Triage Result -->
+                            <div class="result-card" id="triageResult">
+                                <div class="result-header">
+                                    <span class="result-icon">🎯</span>
+                                    <h4>Scam Classification</h4>
+                                </div>
+                                <div class="result-body">
+                                    <div class="scam-type-badge" id="scamTypeBadge">Loading...</div>
+                                    <div class="result-details">
+                                        <div class="detail-row">
+                                            <span class="detail-label">Confidence:</span>
+                                            <span class="detail-value" id="scamConfidence">-</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">Urgency:</span>
+                                            <span class="detail-value urgency-badge" id="scamUrgency">-</span>
+                                        </div>
+                                    </div>
+                                    <p class="result-reasoning" id="scamReasoning">-</p>
+                                </div>
+                            </div>
+
+                            <!-- Evidence Result -->
+                            <div class="result-card" id="evidenceResult">
+                                <div class="result-header">
+                                    <span class="result-icon">🔍</span>
+                                    <h4>Evidence Analysis</h4>
+                                </div>
+                                <div class="result-body">
+                                    <div class="evidence-score">
+                                        <div class="score-circle" id="evidenceScoreCircle">
+                                            <span id="evidenceScore">0</span>
+                                        </div>
+                                        <span>Evidence Score</span>
+                                    </div>
+                                    <div class="suspect-checks" id="suspectChecks">
+                                        <!-- Filled by JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nodal Officer Result -->
+                            <div class="result-card" id="nodalResult">
+                                <div class="result-header">
+                                    <span class="result-icon">🏦</span>
+                                    <h4>Nodal Officer Contact</h4>
+                                </div>
+                                <div class="result-body">
+                                    <div class="nodal-officers-list" id="nodalOfficersList">
+                                        <!-- Filled by JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-actions" id="step3Actions" style="display: none;">
+                            <button class="btn btn-secondary" onclick="prevStep(3)">
+                                <span>←</span> Back
+                            </button>
+                            <button class="btn btn-primary" onclick="nextStep(3)">
+                                View Report <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Generated Report -->
+                <div class="wizard-step" id="step4">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-icon">📋</span>
+                            <h3>Generated Report</h3>
+                        </div>
+
+                        <div class="report-container">
+                            <div class="report-header">
+                                <h4 id="reportTitle">Cyber Fraud Complaint Report</h4>
+                                <div class="report-meta">
+                                    <span class="meta-item" id="reportLength">0 characters</span>
+                                    <span class="meta-item" id="reportStatus">✓ Meets minimum</span>
+                                </div>
+                            </div>
+                            <div class="report-body" id="reportBody">
+                                Loading report...
+                            </div>
+                            <div class="report-actions-list" id="reportActions">
+                                <!-- Filled by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Email Draft -->
+                        <div class="email-draft-container">
+                            <div class="email-header">
+                                <span class="email-icon">✉️</span>
+                                <h4>Email Draft for Nodal Officer</h4>
+                            </div>
+                            <div class="email-body" id="emailDraft">
+                                Loading email draft...
+                            </div>
+                            <button class="btn btn-outline" onclick="copyEmail()">
+                                📋 Copy Email
+                            </button>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn btn-secondary" onclick="prevStep(4)">
+                                <span>←</span> Back
+                            </button>
+                            <button class="btn btn-primary" onclick="downloadReport()">
+                                Download Report <span>📥</span>
+                            </button>
+                            <a href="https://cybercrime.gov.in" target="_blank" class="btn btn-accent">
+                                Submit to NCRP <span>🌐</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nodal Officers Directory -->
+    <section class="directory-section" id="directory">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Bank Nodal Officers Directory</h2>
+                <p class="section-subtitle">Direct contacts for cyber fraud reporting</p>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="bankSearch" class="form-input" placeholder="Search banks...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="nodal-grid" id="nodalGrid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Cyber-Suraksha Works</h2>
+                <p class="section-subtitle">4-Node AI Agent Workflow</p>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- Node 1 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon">🎯</div>
+                    <h4>1. Triage Auditor</h4>
+                    <p>AI classifies your complaint into specific fraud categories using LLM analysis</p>
+                    <div class="node-tag">LangChain + Gemini</div>
+                </div>
+
+                <div class="workflow-arrow">→</div>
+
+                <!-- Node 2 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon">🔍</div>
+                    <h4>2. Evidence Collector</h4>
+                    <p>Validates UTR, extracts bank info, checks I4C repository for flagged suspects</p>
+                    <div class="node-tag">Validation + I4C Check</div>
+                </div>
+
+                <div class="workflow-arrow">→</div>
+
+                <!-- Node 3 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon">🏦</div>
+                    <h4>3. Nodal Router</h4>
+                    <p>Automatically finds the correct bank nodal officer with direct contact details</p>
+                    <div class="node-tag">RBI Database</div>
+                </div>
+
+                <div class="workflow-arrow">→</div>
+
+                <!-- Node 4 -->
+                <div class="workflow-card">
+                    <div class="workflow-icon">📋</div>
+                    <h4>4. Portal Reporter</h4>
+                    <p>Generates formatted report meeting NCRP requirements (200+ characters)</p>
+                    <div class="node-tag">LLM Report Gen</div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h3 class="tech-stack-title">Technology Stack</h3>
+                <div class="tech-badges">
+                    <span class="tech-badge">🐍 FastAPI</span>
+                    <span class="tech-badge">🔗 LangChain</span>
+                    <span class="tech-badge">📊 LangGraph</span>
+                    <span class="tech-badge">🤖 Gemini API</span>
+                    <span class="tech-badge">🌐 HTML/CSS/JS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories Section -->
+    <section class="impact-stories" id="stories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Real Impact Stories</h2>
+                <p class="section-subtitle">How Cyber-Suraksha saves hard-earned money during the Golden Hour</p>
+            </div>
+            <div class="stories-grid">
+                <!-- Office Boy Fraud Story -->
+                <div class="story-card">
+                    <div class="story-badge">Golden Hour Success</div>
+                    <div class="story-icon">🏢</div>
+                    <h4>The Trusted Office Boy</h4>
+                    <p class="story-content">
+                        In a recent case in Mumbai, an office assistant misused a business smartphone to initiate an
+                        unauthorized UPI transfer of <strong>₹45,000</strong> while the owner was away.
+                    </p>
+                    <div class="story-impact">
+                        <span class="impact-label">Recovery Action:</span>
+                        <span class="impact-value">Funds Frozen in 20 Mins</span>
+                    </div>
+                </div>
+
+                <!-- Placeholder for more stories -->
+                <div class="story-card">
+                    <div class="story-icon">🛡️</div>
+                    <h4>Your Story Next</h4>
+                    <p class="story-content">
+                        Cyber-Suraksha is designed to protect every citizen from digital financial fraud. Report
+                        immediately to increase your chances of recovery.
+                    </p>
+                    <div class="story-impact">
+                        <span class="impact-label">Goal:</span>
+                        <span class="impact-value">100% Recovery Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="video-section" id="video-demo">
+        <div class="container">
+            <div class="section-header">
+                <div class="locked-badge">Verified Walkthrough</div>
+                <h2 class="section-title">Official Product Demo</h2>
+                <p class="section-subtitle">Watch how our AI agent handles a fraud report from start to finish</p>
+            </div>
+            <div class="video-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ofjxcuQHB8c"
+                    title="Cyber-Suraksha Demo" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen class="demo-video">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">Cyber-Suraksha</span>
+                    <p>AI-powered First Responder for Financial Fraud Recovery</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h5>Quick Links</h5>
+                        <a href="#report">Report Fraud</a>
+                        <a href="#directory">Nodal Officers</a>
+                        <a href="#how-it-works">How It Works</a>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Emergency</h5>
+                        <a href="tel:1930">📞 1930 Helpline</a>
+                        <a href="https://cybercrime.gov.in" target="_blank">🌐 NCRP Portal</a>
+                        <a href="https://maharashtracyber.gov.in" target="_blank">🏛️ Maha Cyber</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Built for Agentic War Hackathon 2026 | Using LangChain + LangGraph + FastAPI</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message" id="toastMessage">Action completed</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/wizard.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
