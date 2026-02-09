@@ -1287,6 +1287,19 @@ textarea.form-input {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--border-color);
+        padding: 10px 0;
+    }
+
+    .nav-links.active {
+        display: flex;
     }
 
     .mobile-menu-btn {
@@ -1299,25 +1312,49 @@ textarea.form-input {
     }
 
     .mobile-menu-btn span {
-        width: 24px;
+        width: 25px;
         height: 2px;
-        background: #333;
+        background: #fff;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 12px;
     }
 
     .hero-stats {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .form-grid {
+    .form-row {
         grid-template-columns: 1fr;
+        display: block;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .wizard-progress {
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 15px;
+    }
+
+    .step-card {
+        padding: 20px;
     }
 
     .node-status-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .steps-grid {
